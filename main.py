@@ -155,7 +155,7 @@ def main():
             proxy_url = st.text_input(
                 "Cloudflare Worker URL",
                 value=default_proxy_url,
-                placeholder="https://your-worker.your-username.workers.dev",
+                placeholder="https://nameless-lake-021c.pan740583913.workers.dev/",
                 key="proxy_url"
             )
             st.info("Cloudflare Worker代理可以帮助解决跨境访问阿里云API的问题")
