@@ -1,0 +1,21 @@
+# 核心依赖
+streamlit>=1.24.0
+openai>=1.0.0
+Pillow>=9.0.0
+pandas>=1.5.0
+numpy>=1.20.0
+
+# 数据处理与可视化
+matplotlib>=3.5.0
+plotly>=5.10.0
+
+# 实用工具
+python-dotenv>=0.19.0
+requests>=2.28.0
+tqdm>=4.64.0
+
+# 并发处理
+concurrent-futures>=3.0.5
+
+# 可选依赖 - 如果使用阿里云官方SDK
+# dashscope>=0.8.0
