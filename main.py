@@ -45,15 +45,25 @@ def image_to_base64(image, max_size=1024, quality=85):
     return img_str
 
 
-# Cloudflare Worker 代理客户端
+# Cloudflare Worker 代理客户端 - 修改后的类结构
 class CloudflareProxyClient:
     def __init__(self, api_key, proxy_url):
         self.api_key = api_key
         self.proxy_url = proxy_url
-        self.chat = ChatCompletions(self)
+        self.chat = Chat(self)
 
 
-class ChatCompletions:
+class Chat:
+    """处理聊天相关请求的类"""
+
+    def __init__(self, client):
+        self.client = client
+        self.completions = Completions(client)
+
+
+class Completions:
+    """处理聊天补全请求的类"""
+
     def __init__(self, client):
         self.client = client
 
@@ -193,6 +203,13 @@ def main():
                         api_key=api_key,
                         proxy_url=proxy_url if use_proxy else None
                     )
+
+                    # 添加调试信息
+                    if st.checkbox("显示调试信息", value=False):
+                        st.write("客户端类型:", type(client))
+                        st.write("chat 属性类型:", type(client.chat))
+                        st.write("completions 属性类型:",
+                                 type(client.chat.completions) if hasattr(client.chat, "completions") else "不存在")
 
                     # 1. 提取文本
                     with st.spinner("正在识别图片文本..."):
